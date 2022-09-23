@@ -259,3 +259,59 @@ Promise.all([
 ]).then((messages) =>{
     console.log(messages)
 })
+
+// 1. Can “x !== x” return true？
+const x = NaN;
+if (x !== x) {
+    console.log('Hello fatfish');
+}
+
+console.log(NaN === NaN); // false
+console.log(x !== x); // true
+console.log(Number.isNaN(x)); // true
+
+// 2. Can (!isNaN(y) && y !== y) return true?
+//const y = ?;
+//if (!isNaN(y) && y !== y) {
+//    console.log('Hi fatfish');
+//}
+
+window.y = 0;
+Object.defineProperty(window, 'y', {
+    get() {
+        return Math.random()
+    }
+})
+console.log(y);
+console.log(y === y);
+console.log(y !== y);
+
+// 3. How to make “x === x + 1”?
+const z = Number.MAX_SAFE_INTEGER + 1;
+if (z === z + 1) {
+    console.log('Hi Fatfish');
+}
+
+// 4. Can “a > a” be true？
+const a = {
+    value: 1,
+    [Symbol.toPrimitive]() {
+        console.log('a', this.value)
+        return --this.value
+    }
+}
+
+if (a > a) {
+    console.log('heeeeey fatfish');
+}
+
+// 5. typeof b === ‘undefined’ && b.length > 0 ?
+const b = document.all;
+
+if (typeof b === 'undefined' && b.length > 0) {
+    console.log('hello fatfish');
+}
+
+console.log(b);
+console.log(typeof b);
+console.log(b === undefined);
